@@ -1,0 +1,6 @@
+@FtpProductCatalogService_HostAddress = http://localhost:5105
+
+GET {{FtpProductCatalogService_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
