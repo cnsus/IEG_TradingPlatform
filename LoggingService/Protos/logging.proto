@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+option csharp_namespace = "LoggingService";
+
+package logging;
+
+// Zentraler gRPC Logging-Service fuer die Trading Platform
+// Empfaengt Fehler-Logs von MeiShop und persistiert sie in einer Datei
+service LoggingGrpcService {
+  // Einen einzelnen Fehler-Log-Eintrag senden
+  rpc LogError (LogEntry) returns (LogResponse);
+  
+  // Alle gespeicherten Logs abrufen (Server-Streaming)
+  rpc GetLogs (LogFilter) returns (stream LogEntry);
+}
+
+// Ein einzelner Log-Eintrag mit allen relevanten Fehlerinformationen
+message LogEntry {
+  string timestamp = 1;          // Zeitpunkt des Fehlers (ISO 8601)
+  string service_name = 2;       // Name des aufrufenden Services (z.B. "MeiShop")
+  string instance_url = 3;       // URL der fehlgeschlagenen Service-Instanz
+  string error_message = 4;      // Fehlerbeschreibung
+  string http_status_code = 5;   // HTTP Status Code (falls vorhanden)
+  int32 retry_attempt = 6;       // Aktueller Retry-Versuch (1-basiert)
+  string correlation_id = 7;     // Korrelations-ID zur Nachverfolgung eines Requests
+}
+
+// Antwort nach erfolgreichem Logging
+message LogResponse {
+  bool success = 1;              // Ob der Log-Eintrag erfolgreich gespeichert wurde
+  string log_id = 2;            // Eindeutige ID des gespeicherten Log-Eintrags
+}
+
+// Filter fuer das Abrufen von Logs
+message LogFilter {
+  string service_name = 1;      // Optional: Nur Logs eines bestimmten Services
+  string from_timestamp = 2;    // Optional: Nur Logs ab einem bestimmten Zeitpunkt
+}
