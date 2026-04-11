@@ -34,7 +34,7 @@ Diese Dokumentation beschreibt die Implementierung von **Aufgabe 3** der IEG Tra
 │  Client   │◄────────────────►│          MeiShop               │
 │           │                  │        (API Gateway)           │
 └──────────┘                   │          :7024                 │
-                               │                               │
+                               │                                │
                                │  ┌─────────────────────────┐  │
                                │  │ RoundRobinLoadBalancer   │  │
                                │  │ + ResilientServiceCaller │  │
