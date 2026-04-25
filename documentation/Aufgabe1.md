@@ -1,8 +1,29 @@
-# Domain-Driven Design & Microservices – IEG Trading Platform
+# Aufgabe 1 (25 Punkte)
 
-## 1. Domain-Driven Design (DDD) und Microservices
+## a) Analyse & Cloud Deployment
 
-### 1.1 Grundidee von DDD
+#TODO
+
+### Aufgabenstellung
+
+Analyse: Machen Sie sich mit dem Ausgangs-Source-Code „SolTradingPlatform" vertraut. Publizieren Sie die beiden Services „MeiShop" und „IEGEasyCreditCardService" in die Microsoft Azure Cloud und testen Sie die Funktionalität. Alternativ können Sie die Projekte natürlich auch onpremise hosten (0 Punkte)
+
+### Ausarbeitung
+
+
+---
+
+## b) Domain-Driven Design (DDD) im Zusammenhang mit Microservices
+
+### Aufgabenstellung
+
+Beschreiben Sie zuerst den Ansatz „Domain-Driven Design (DDD) im Zusammenhang mit Microservices. Überlegen Sie welche weiteren Microservices in Zusammenhang mit der Trading Platform sinnvoll wären. Beschreiben Sie danach die Funktionalitäten / Verantwortlichkeiten der einzelnen Microservices – Stichwort: Business Capabilities
+
+### Ausarbeitung
+
+### 1. Domain-Driven Design (DDD) und Microservices
+
+#### 1.1 Grundidee von DDD
 
 Domain-Driven Design stellt die **Fachdomaene** in den Mittelpunkt der Softwareentwicklung. Die wichtigsten Begriffe:
 
@@ -11,7 +32,7 @@ Domain-Driven Design stellt die **Fachdomaene** in den Mittelpunkt der Softwaree
 - **Bounded Context:** Abgegrenzter Bereich mit eigenem Modell und eigener Datenhoheit.
 - **Entities / Value Objects:** Objekte mit Identitaet (Payment) bzw. ohne (Currency).
 
-### 1.2 Warum DDD und Microservices gut zusammenpassen
+#### 1.2 Warum DDD und Microservices gut zusammenpassen
 
 **Kernprinzip:** Ein Microservice = ein Bounded Context = eine Business Capability.
 
@@ -24,11 +45,9 @@ Domain-Driven Design stellt die **Fachdomaene** in den Mittelpunkt der Softwaree
 
 Der `ProductService` weiss nichts von Kreditkarten, der `IEGEasyCreditcardService` nichts von Produkten. Jeder Service ist autonom.
 
----
+### 2. Microservices der Trading Platform
 
-## 2. Microservices der Trading Platform
-
-### 2.1 Bestehende Services (Business Capabilities)
+#### 2.1 Bestehende Services (Business Capabilities)
 
 | Service | Port | Bounded Context | Verantwortlichkeit |
 |---|---|---|---|
@@ -38,7 +57,7 @@ Der `ProductService` weiss nichts von Kreditkarten, der `IEGEasyCreditcardServic
 | **PaymentService** | 7400 | Zahlungsabwicklung | Payments in JSON/XML/CSV via Content Negotiation |
 | **MeiShop** | 7024 | Shop-Orchestrierung | API Gateway, aggregiert Backend-Services mit Polly-Retry |
 
-### 2.2 Sinnvolle Erweiterungen
+#### 2.2 Sinnvolle Erweiterungen
 
 - **OrderService** – Bestellprozess vom Warenkorb bis zur Bestaetigung
 - **CustomerService** – Kundenstammdaten, Login, Lieferadressen
@@ -47,21 +66,29 @@ Der `ProductService` weiss nichts von Kreditkarten, der `IEGEasyCreditcardServic
 
 ---
 
-## 3. Schnittstellen und Datenaustauschformate
+## c) Detailbeschreibung Schnittstellen
 
-### 3.1 ProductService
+#TODO
+
+### Aufgabenstellung
+
+Erstellen Sie eine Detailbeschreibung der angebotenen Schnittstellen inkl. Datenaustauschformate
+
+### Ausarbeitung
+
+#### ProductService
 
 | Methode | Endpunkt | Response | Format |
 |---|---|---|---|
 | GET | `/api/products` | `["Laptop", "Smartphone", ...]` | JSON |
 
-### 3.2 FtpProductCatalogService
+#### FtpProductCatalogService
 
 | Methode | Endpunkt | Response | Format |
 |---|---|---|---|
 | GET | `/api/productcatalog` | Liste aus `products.txt` | JSON |
 
-### 3.3 IEGEasyCreditcardService
+#### IEGEasyCreditcardService
 
 | Methode | Endpunkt | Beschreibung | Format |
 |---|---|---|---|
@@ -80,7 +107,7 @@ Der `ProductService` weiss nichts von Kreditkarten, der `IEGEasyCreditcardServic
 }
 ```
 
-### 3.4 PaymentService (Content Negotiation)
+#### PaymentService (Content Negotiation)
 
 | Methode | Endpunkt | Beschreibung |
 |---|---|---|
@@ -111,7 +138,7 @@ Id,Amount,Currency,Description,PaymentMethod,CreatedAt
 1,49.99,EUR,Laptop Zubehoer,CreditCard,2026-01-15
 ```
 
-### 3.5 MeiShop (API Gateway)
+#### MeiShop (API Gateway)
 
 | Methode | Endpunkt | Ruft auf | Resilience |
 |---|---|---|---|
@@ -119,7 +146,7 @@ Id,Amount,Currency,Description,PaymentMethod,CreatedAt
 | GET | `/api/productcatalog` | FtpProductCatalogService | – |
 | GET | `/api/paymentmethods` | IEGEasyCreditcardService | Polly Retry (3× / 2s) |
 
-### 3.6 Kommunikationsmuster
+#### Kommunikationsmuster
 
 ```
                           ┌──────────────┐
@@ -152,9 +179,17 @@ Der Client ruft entweder den `PaymentService` direkt an oder geht ueber das Gate
 
 ---
 
-## 4. Datenhaltung – Decentralized Data Management
+## d) Detailbeschreibung Datenhaltung
 
-### 4.1 Prinzip
+#TODO
+
+### Aufgabenstellung
+
+Erstellen Sie eine Detailbeschreibung der Datenhaltung – Stichwort: Decentralized Data Management
+
+### Ausarbeitung
+
+### Prinzip
 
 > **Jeder Microservice verwaltet seine eigenen Daten. Es gibt kein gemeinsames Datenbankschema.**
 
@@ -163,7 +198,7 @@ Der Client ruft entweder den `PaymentService` direkt an oder geht ueber das Gate
 - Datenaustausch **nur ueber APIs**
 - Services sind unabhaengig deploy- und skalierbar
 
-### 4.2 Speicher der einzelnen Services
+### Speicher der einzelnen Services
 
 | Service | Speicher | Beschreibung |
 |---|---|---|
@@ -173,20 +208,20 @@ Der Client ruft entweder den `PaymentService` direkt an oder geht ueber das Gate
 | PaymentService | In-Memory Liste | 3 Beispiel-Payments, Laufzeit-Daten |
 | MeiShop | – | Kein eigener Store, nur Aggregation |
 
-### 4.3 Vorteile
+### Vorteile
 
 - **Polyglot Persistence:** Jeder Service waehlt die passende Technologie
 - **Unabhaengige Skalierung** pro Service
 - **Fehler-Isolation:** Ausfall einer Datenquelle betrifft nur einen Service
 - **Team-Autonomie:** keine gemeinsamen Datenbank-Abhaengigkeiten
 
-### 4.4 Herausforderungen
+### Herausforderungen
 
 - **Konsistenz** ueber Service-Grenzen → *Eventual Consistency*, *Saga Pattern*
 - **Daten-Duplikation** ist gewollt – jeder Bounded Context hat sein eigenes Modell
 - **Uebergreifende Abfragen** laufen ueber das API Gateway
 
-### 4.5 Beispiel: Bestellung aufgeben
+### Beispiel: Bestellung aufgeben
 
 ```
 1. Client  →  GET /api/products          →  ProductService

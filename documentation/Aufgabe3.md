@@ -1,12 +1,12 @@
-# Aufgabe 3: Skalierung, Ausfallsicherheit und Logging – Dokumentation
+# Aufgabe 3 - Skalierung, Ausfallsicherheit und Logging (10 Punkte)
 
-## 1. Ueberblick
+## Aufgabenstellung
 
-Diese Dokumentation beschreibt die Implementierung von **Aufgabe 3** der IEG Trading Platform: Skalierung, Ausfallsicherheit und zentrales Logging fuer den CreditPaymentService.
+Skalierung, Ausfallssicherheit und Logging (Design for failure) für CreditPaymentService. Detailsbeschreibung: Publizieren Sie das Service „IEGEasyCreditCardService" mehrfach und rufen Sie die Services im „Round Robin" Stil auf. Falls es beim Aufruf eines Service zu einem Fehler kommt, soll es eine Retry-Logik geben, außerdem soll der aufgetretene Fehler mit Hilfe eines zentralen Logging-Service (gRPC) protokolliert werden. Nach n erfolglosen Versuchen, soll das nächste Service aufgerufen werden. Recherchieren Sie zusätzlich nach einem geeigneten Framework und Skalierungsmöglichkeiten setzen Sie dieses gegebenenfalls ein (10 Punkte)
 
-### Aufgabenstellung
+## Ausarbeitung
 
-> Publizieren Sie das Service „IEGEasyCreditCardService" mehrfach und rufen Sie die Services im „Round Robin" Stil auf. Falls es beim Aufruf eines Service zu einem Fehler kommt, soll es eine Retry-Logik geben, außerdem soll der aufgetretene Fehler mit Hilfe eines zentralen Logging-Service (gRPC) protokolliert werden. Nach n erfolglosen Versuchen, soll das nächste Service aufgerufen werden.
+### 1. Ueberblick
 
 ### Implementierte Features
 
@@ -20,7 +20,7 @@ Diese Dokumentation beschreibt die Implementierung von **Aufgabe 3** der IEG Tra
 
 ---
 
-## 2. Architektur
+### 2. Architektur
 
 ```
                             ┌────────────┐
@@ -76,9 +76,9 @@ Diese Dokumentation beschreibt die Implementierung von **Aufgabe 3** der IEG Tra
 
 ---
 
-## 3. Komponenten im Detail
+### 3. Komponenten im Detail
 
-### 3.1 Round Robin Load Balancer
+#### 3.1 Round Robin Load Balancer
 
 **Datei:** `MeiShop/Services/RoundRobinLoadBalancer.cs`
 
@@ -97,7 +97,7 @@ Request 4 → Instanz 1 (Port 7231)  ← Round Robin beginnt von vorne
 ...
 ```
 
-### 3.2 Resilient Service Caller (Retry + Failover)
+#### 3.2 Resilient Service Caller (Retry + Failover)
 
 **Datei:** `MeiShop/Services/ResilientServiceCaller.cs`
 
@@ -112,7 +112,7 @@ Der `ResilientServiceCaller` implementiert das **"Design for failure"** Prinzip:
 4. **Nach 4 fehlgeschlagenen Retries:** Failover zur naechsten Instanz
 5. **Alle 3 Instanzen fehlgeschlagen:** HTTP 503 (Service Unavailable) zurueckgeben
 
-### 3.3 Polly Resilience Framework
+#### 3.3 Polly Resilience Framework
 
 **Polly** (https://github.com/App-vNext/Polly) ist der De-facto-Standard fuer Resilience und transiente Fehlerbehandlung in .NET. Es bietet:
 
@@ -133,7 +133,7 @@ Policy.HandleResult<HttpResponseMessage>(msg => !msg.IsSuccessStatusCode)
         (outcome, timeSpan, retryCount, context) => { /* Logging */ });
 ```
 
-### 3.4 gRPC Logging-Service
+#### 3.4 gRPC Logging-Service
 
 **Verzeichnis:** `LoggingService/`
 
@@ -171,7 +171,7 @@ message LogEntry {
 - **Datei:** `logs/error_log.txt` (append-only, thread-safe via Lock)
 - **Console:** Ausgabe fuer Demo-Zwecke
 
-### 3.5 gRPC Client (MeiShop)
+#### 3.5 gRPC Client (MeiShop)
 
 **Datei:** `MeiShop/Services/GrpcLoggingClient.cs`
 
@@ -181,9 +181,9 @@ message LogEntry {
 
 ---
 
-## 4. Bezug zu Microservices-Konzepten
+### 4. Bezug zu Microservices-Konzepten
 
-### 4.1 Design for failure (Martin Fowler)
+#### 4.1 Design for failure (Martin Fowler)
 
 Laut dem Artikel von Martin Fowler zu Microservices muessen Services so entworfen werden, dass sie mit dem Ausfall anderer Services umgehen koennen:
 
@@ -194,14 +194,14 @@ Unsere Implementierung setzt dies um durch:
 - **Failover:** Wechsel zur naechsten Instanz bei dauerhaften Fehlern
 - **Graceful Degradation:** HTTP 503 mit informativer Fehlermeldung statt Absturz
 
-### 4.2 Skalierung
+#### 4.2 Skalierung
 
 Die Multi-Instanz-Konfiguration demonstriert **horizontale Skalierung**:
 - Gleicher Service-Code laeuft auf mehreren Ports
 - Load Balancing verteilt die Last gleichmaessig
 - Instanzen koennen unabhaengig gestartet und gestoppt werden
 
-### 4.3 Zentrales Logging
+#### 4.3 Zentrales Logging
 
 In einer Microservice-Architektur ist **zentrales Logging** essentiell:
 - **Verteilte Systeme:** Fehler koennen in jedem Service auftreten
@@ -210,9 +210,9 @@ In einer Microservice-Architektur ist **zentrales Logging** essentiell:
 
 ---
 
-## 5. Konfiguration
+### 5. Konfiguration
 
-### MeiShop appsettings.json
+#### MeiShop appsettings.json
 
 ```json
 {
@@ -240,9 +240,9 @@ In einer Microservice-Architektur ist **zentrales Logging** essentiell:
 
 ---
 
-## 6. Starten und Testen
+### 6. Starten und Testen
 
-### Services starten
+#### Services starten
 
 **macOS/Linux:**
 ```bash
@@ -254,7 +254,7 @@ In einer Microservice-Architektur ist **zentrales Logging** essentiell:
 start-all.bat
 ```
 
-### Testen
+#### Testen
 
 **1. Round Robin testen (10 Requests):**
 ```bash
@@ -273,7 +273,7 @@ done
 - Console des LoggingService beobachten
 - Datei `LoggingService/logs/error_log.txt` pruefen
 
-### Port-Uebersicht
+#### Port-Uebersicht
 
 | Service | Port | Protokoll |
 |---|---|---|
@@ -288,9 +288,9 @@ done
 
 ---
 
-## 7. Neue und geaenderte Dateien
+### 7. Neue und geaenderte Dateien
 
-### Neue Dateien
+#### Neue Dateien
 
 | Datei | Beschreibung |
 |---|---|
@@ -304,9 +304,8 @@ done
 | `MeiShop/Services/GrpcLoggingClient.cs` | gRPC-Client fuer Logging |
 | `MeiShop/Protos/logging.proto` | gRPC Client-Definition |
 | `start-all.sh` | macOS Start-Skript |
-| `Aufgabe3_Dokumentation.md` | Diese Dokumentation |
 
-### Geaenderte Dateien
+#### Geaenderte Dateien
 
 | Datei | Aenderung |
 |---|---|

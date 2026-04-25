@@ -1,6 +1,12 @@
-# Asynchrone Kommunikationsmuster – IEG Trading Platform
+# Aufgabe 4 - Asynchrone Kommunikationsstile (10 Punkte)
 
-## 1. Ausgangslage
+## Aufgabenstellung
+
+(theoretische) Überlegungen zum Einsatz von Asynchronen Kommunikationsstilen in der Handelsplattform (10 Punkte) – Pattern: Messaging
+
+## Ausarbeitung
+
+### 1. Ausgangslage
 
 Die IEG Trading Platform nutzt aktuell **synchrone REST/HTTP-Kommunikation** zwischen allen Services. Das bedeutet: Client und Service muessen gleichzeitig verfuegbar sein, und der Aufrufer blockiert, bis die Antwort eintrifft.
 
@@ -13,7 +19,7 @@ Die IEG Trading Platform nutzt aktuell **synchrone REST/HTTP-Kommunikation** zwi
 
 ---
 
-## 2. Asynchrone Kommunikationsstile
+### 2. Asynchrone Kommunikationsstile
 
 | Stil | Beschreibung | Beispiel in der Trading Platform |
 |---|---|---|
@@ -25,7 +31,7 @@ Die IEG Trading Platform nutzt aktuell **synchrone REST/HTTP-Kommunikation** zwi
 
 ---
 
-## 3. Technologien
+### 3. Technologien
 
 | Kriterium | Apache Kafka | RabbitMQ |
 |---|---|---|
@@ -38,13 +44,13 @@ Die IEG Trading Platform nutzt aktuell **synchrone REST/HTTP-Kommunikation** zwi
 
 ---
 
-## 4. Anwendung auf die Trading Platform
+### 4. Anwendung auf die Trading Platform
 
-### Was bleibt synchron?
+#### Was bleibt synchron?
 - Produkte abrufen (GET) – einfacher Lesezugriff, Ergebnis sofort benoetigt
 - Akzeptierte Kreditkarten abrufen – Referenzdaten
 
-### Was wird asynchron?
+#### Was wird asynchron?
 - **Bestellung aufgeben** → Publish/Subscribe (`OrderCreated`-Event)
 - **Zahlung verarbeiten** → Request/Async Response
 - **Bestellbestaetigung senden** → Notification (Fire-and-Forget)
@@ -52,7 +58,7 @@ Die IEG Trading Platform nutzt aktuell **synchrone REST/HTTP-Kommunikation** zwi
 
 ---
 
-## 5. Vorteile und Herausforderungen
+### 5. Vorteile und Herausforderungen
 
 | Vorteile | Herausforderungen |
 |---|---|
@@ -63,7 +69,7 @@ Die IEG Trading Platform nutzt aktuell **synchrone REST/HTTP-Kommunikation** zwi
 
 ---
 
-## 6. Verwandte Patterns
+### 6. Verwandte Patterns
 
 - **Saga Pattern** – Verteilte Transaktionen ueber mehrere Services (z.B. Bestellung = Payment + Inventory)
 - **CQRS** – Trennung von Schreib- und Leseoperationen, Events transportieren Aenderungen
