@@ -1,3 +1,4 @@
+
 # IEG Trading Platform – Kurzdokumentation
 
 ## Was ist das Projekt?
