@@ -54,6 +54,7 @@ Die **IEG Trading Platform** ist eine verteilte Handelsplattform, die auf einer 
 | **IEGEasyCreditCardService** | 5201/5202 | Kreditkarten-Payment (multi-instance, Round Robin)  |
 | **PaymentService**         | 5069  | Content-Negotiation-faehiges Payment (JSON/XML/CSV)       |
 | **LoggingService**         | 5223  | Zentrales gRPC-basiertes Logging                          |
+| **ProductODataService**    | 7500  | OData v4 Produktkatalog mit $filter, $orderby, $select    |
 | **Consul**                 | 8500  | Service Discovery & Configuration                         |
 
 ---

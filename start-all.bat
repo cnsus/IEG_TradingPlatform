@@ -34,7 +34,10 @@ start "FtpProductCatalogService      (https://localhost:7300)" cmd /k "cd /d %~d
 REM 7. PaymentService
 start "PaymentService                (https://localhost:7400)" cmd /k "cd /d %~dp0PaymentService && dotnet run --launch-profile https"
 
-REM 8. MeiShop (API Gateway) - zuletzt
+REM 8. ProductODataService (Aufgabe 8: OData)
+start "ProductODataService           (https://localhost:7500)" cmd /k "cd /d %~dp0ProductODataService && dotnet run --launch-profile https"
+
+REM 9. MeiShop (API Gateway) - zuletzt
 start "MeiShop                       (https://localhost:7024)" cmd /k "cd /d %~dp0MeiShop && dotnet run --launch-profile https"
 
 echo.
@@ -47,4 +50,5 @@ echo   - CreditcardService #3:     https://localhost:7233
 echo   - ProductService:           https://localhost:7200
 echo   - FtpProductCatalogService: https://localhost:7300
 echo   - PaymentService:           https://localhost:7400
+echo   - ProductODataService:      https://localhost:7500/odata/Products
 echo   - MeiShop (Swagger):        https://localhost:7024/swagger
