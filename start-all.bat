@@ -10,14 +10,20 @@ REM 1. gRPC LoggingService
 start "LoggingService (gRPC)          (http://localhost:5500)" cmd /k "cd /d %~dp0LoggingService && dotnet run"
 timeout /t 2 /nobreak >nul
 
+REM CreditcardService einmal bauen, damit die parallelen Instanzen sich nicht die bin/obj-Dateien gegenseitig sperren
+echo Baue CreditcardService einmalig...
+pushd "%~dp0IEGEasyCreditcardService"
+dotnet build -v:minimal
+popd
+
 REM 2. CreditcardService Instanz 1 (Standard)
-start "CreditcardService Instanz 1   (https://localhost:7231)" cmd /k "cd /d %~dp0IEGEasyCreditcardService && dotnet run --launch-profile https"
+start "CreditcardService Instanz 1   (https://localhost:7231)" cmd /k "cd /d %~dp0IEGEasyCreditcardService && dotnet run --no-build --launch-profile https"
 
 REM 3. CreditcardService Instanz 2
-start "CreditcardService Instanz 2   (https://localhost:7232)" cmd /k "cd /d %~dp0IEGEasyCreditcardService && dotnet run --urls https://localhost:7232;http://localhost:5229"
+start "CreditcardService Instanz 2   (https://localhost:7232)" cmd /k "cd /d %~dp0IEGEasyCreditcardService && dotnet run --no-build --urls https://localhost:7232;http://localhost:5229"
 
 REM 4. CreditcardService Instanz 3
-start "CreditcardService Instanz 3   (https://localhost:7233)" cmd /k "cd /d %~dp0IEGEasyCreditcardService && dotnet run --urls https://localhost:7233;http://localhost:5230"
+start "CreditcardService Instanz 3   (https://localhost:7233)" cmd /k "cd /d %~dp0IEGEasyCreditcardService && dotnet run --no-build --urls https://localhost:7233;http://localhost:5230"
 
 REM 5. ProductService
 start "ProductService                (https://localhost:7200)" cmd /k "cd /d %~dp0ProductService && dotnet run --launch-profile https"

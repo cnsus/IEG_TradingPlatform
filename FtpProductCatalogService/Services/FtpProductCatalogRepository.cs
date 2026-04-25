@@ -27,6 +27,9 @@ namespace FtpProductCatalogService.Services
 
             var config = new FtpConfig
             {
+                // Explizites FTPS: Client sendet AUTH TLS vor dem Login
+                EncryptionMode = FtpEncryptionMode.Explicit,
+                DataConnectionEncryption = true,
                 // Selbst-signierte TLS-Zertifikate akzeptieren (für lokale Entwicklung)
                 ValidateAnyCertificate = true
             };
