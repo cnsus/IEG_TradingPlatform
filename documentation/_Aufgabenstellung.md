@@ -4,8 +4,8 @@
 
 ## Aufgabe 1 (25 Punkte)
 
-- [ ] **a)** Analyse des Ausgangs-Source-Codes "SolTradingPlatform". Services "MeiShop" und "IEGEasyCreditCardService" in Azure Cloud publizieren (oder on-premise hosten) und Funktionalität testen.
-- [ ] **b)** Domain-Driven Design (DDD) im Zusammenhang mit Microservices beschreiben. Weitere sinnvolle Microservices identifizieren. Funktionalitäten/Verantwortlichkeiten der einzelnen Microservices beschreiben (Business Capabilities).
+- [] **a)** Analyse des Ausgangs-Source-Codes "SolTradingPlatform". Services "MeiShop" und "IEGEasyCreditCardService" in Azure Cloud publizieren (oder on-premise hosten) und Funktionalität testen.
+- [x] **b)** Domain-Driven Design (DDD) im Zusammenhang mit Microservices beschreiben. Weitere sinnvolle Microservices identifizieren. Funktionalitäten/Verantwortlichkeiten der einzelnen Microservices beschreiben (Business Capabilities).
 - [ ] Detailbeschreibung der angebotenen Schnittstellen inkl. Datenaustauschformate erstellen.
 - [ ] Detailbeschreibung der Datenhaltung erstellen (Decentralized Data Management).
 
