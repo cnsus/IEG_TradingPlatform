@@ -37,18 +37,26 @@ start "PaymentService                (https://localhost:7400)" cmd /k "cd /d %~d
 REM 8. ProductODataService (Aufgabe 8: OData)
 start "ProductODataService           (https://localhost:7500)" cmd /k "cd /d %~dp0ProductODataService && dotnet run --launch-profile https"
 
-REM 9. MeiShop (API Gateway) - zuletzt
+REM 9. WebhookSubscriberService (Aufgabe 7: Webhooks)
+start "WebhookSubscriberService      (https://localhost:7600)" cmd /k "cd /d %~dp0WebhookSubscriberService && dotnet run --launch-profile https"
+
+REM 10. OrderSagaService (Aufgabe 9: SAGA Pattern)
+start "OrderSagaService              (https://localhost:7700)" cmd /k "cd /d %~dp0OrderSagaService && dotnet run --launch-profile https"
+
+REM 11. MeiShop (API Gateway) - zuletzt
 start "MeiShop                       (https://localhost:7024)" cmd /k "cd /d %~dp0MeiShop && dotnet run --launch-profile https"
 
 echo.
 echo Alle Services gestartet.
 echo.
-echo   - LoggingService (gRPC):    http://localhost:5500
-echo   - CreditcardService #1:     https://localhost:7231
-echo   - CreditcardService #2:     https://localhost:7232
-echo   - CreditcardService #3:     https://localhost:7233
-echo   - ProductService:           https://localhost:7200
-echo   - FtpProductCatalogService: https://localhost:7300
-echo   - PaymentService:           https://localhost:7400
-echo   - ProductODataService:      https://localhost:7500/odata/Products
-echo   - MeiShop (Swagger):        https://localhost:7024/swagger
+echo   - LoggingService (gRPC):        http://localhost:5500
+echo   - CreditcardService #1:         https://localhost:7231
+echo   - CreditcardService #2:         https://localhost:7232
+echo   - CreditcardService #3:         https://localhost:7233
+echo   - ProductService:               https://localhost:7200
+echo   - FtpProductCatalogService:      https://localhost:7300
+echo   - PaymentService:               https://localhost:7400
+echo   - ProductODataService:           https://localhost:7500/odata/Products
+echo   - WebhookSubscriberService:      https://localhost:7600/swagger
+echo   - OrderSagaService:              https://localhost:7700/swagger
+echo   - MeiShop (Swagger):             https://localhost:7024/swagger

@@ -4,13 +4,13 @@
 
 ## Aufgabe 1 (25 Punkte)
 
-- [ ] **a)** Analyse: Machen Sie sich mit dem Ausgangs-Source-Code „SolTradingPlatform" vertraut. Publizieren Sie die beiden Services „MeiShop" und „IEGEasyCreditCardService" in die Microsoft Azure Cloud und testen Sie die Funktionalität. Alternativ können Sie die Projekte natürlich auch onpremise hosten (0 Punkte)
+- [x] **a)** Analyse: Machen Sie sich mit dem Ausgangs-Source-Code „SolTradingPlatform" vertraut. Publizieren Sie die beiden Services „MeiShop" und „IEGEasyCreditCardService" in die Microsoft Azure Cloud und testen Sie die Funktionalität. Alternativ können Sie die Projekte natürlich auch onpremise hosten (0 Punkte)
 
 - [x] **b)** Beschreiben Sie zuerst den Ansatz „Domain-Driven Design (DDD) im Zusammenhang mit Microservices. Überlegen Sie welche weiteren Microservices in Zusammenhang mit der Trading Platform sinnvoll wären. Beschreiben Sie danach die Funktionalitäten / Verantwortlichkeiten der einzelnen Microservices – Stichwort: Business Capabilities
 
-- [ ] Erstellen Sie eine Detailbeschreibung der angebotenen Schnittstellen inkl. Datenaustauschformate
+- [x] Erstellen Sie eine Detailbeschreibung der angebotenen Schnittstellen inkl. Datenaustauschformate
 
-- [ ] Erstellen Sie eine Detailbeschreibung der Datenhaltung – Stichwort: Decentralized Data Management
+- [x] Erstellen Sie eine Detailbeschreibung der Datenhaltung – Stichwort: Decentralized Data Management
 
 ---
 
@@ -40,31 +40,31 @@
 
 ## Aufgabe 6 (10 Punkte)
 
-- [ ] (theoretische) Überlegungen zu einem PaymentService-Broker. Dieses Service soll zwischen Shops und Payment-Services „vermitteln". Mögliche Info-Quellen: Broker Pattern - GeeksforGeeks, Message Broker Pattern for Microservices Interservice Communication | Redis, http://www.enterpriseintegrationpatterns.com/patterns/messaging/CanonicalDataModel.html – Recherchieren Sie dazu zusätzliche Patterns und Quellen
+- [x] (theoretische) Überlegungen zu einem PaymentService-Broker. Dieses Service soll zwischen Shops und Payment-Services „vermitteln". Mögliche Info-Quellen: Broker Pattern - GeeksforGeeks, Message Broker Pattern for Microservices Interservice Communication | Redis, http://www.enterpriseintegrationpatterns.com/patterns/messaging/CanonicalDataModel.html – Recherchieren Sie dazu zusätzliche Patterns und Quellen
 
 ---
 
 ## Aufgabe 7 (10 Punkte)
 
-- [ ] Webhook-Subscriber: Überlegen und implementieren Sie ein mögliches Webhook-Szenario (10 Punkte)
+- [x] Webhook-Subscriber: Überlegen und implementieren Sie ein mögliches Webhook-Szenario (10 Punkte)
 
 ---
 
 ## Aufgabe 8 (10 Punkte)
 
-- [ ] Machen Sie sich mit dem Begriff OData vertraut. Überlegen und implementieren Sie ein mögliches OData (Service & Client)-Szenario (10 Punkte)
+- [x] Machen Sie sich mit dem Begriff OData vertraut. Überlegen und implementieren Sie ein mögliches OData (Service & Client)-Szenario (10 Punkte)
 
 ---
 
 ## Aufgabe 9 (10 Punkte)
 
-- [ ] Machen Sie sich mit dem Begriff SAGA-Pattern vertraut. Überlegen und implementieren Sie ein mögliches SAGA-Pattern Szenario (Service & Client)-Szenario. Umgang mit Ausfallsicherheit – Stichwort: Design for failure / Resilient Software Design (10 Punkte)
+- [x] Machen Sie sich mit dem Begriff SAGA-Pattern vertraut. Überlegen und implementieren Sie ein mögliches SAGA-Pattern Szenario (Service & Client)-Szenario. Umgang mit Ausfallsicherheit – Stichwort: Design for failure / Resilient Software Design (10 Punkte)
 
 ---
 
 ## Aufgabe 10 (10 Punkte)
 
-- [ ] Machen Sie sich mit dem Begriff „Open Data" vertraut und beschreiben Sie diesen in einigen wenigen Sätzen. Beschreiben Sie außerdem mögliche Anwendungsfälle im Zusammenhang mit der Handelsplattform
+- [x] Machen Sie sich mit dem Begriff „Open Data" vertraut und beschreiben Sie diesen in einigen wenigen Sätzen. Beschreiben Sie außerdem mögliche Anwendungsfälle im Zusammenhang mit der Handelsplattform
 
 ---
 
@@ -161,7 +161,7 @@
 
 # BONUS-Punkte (max. 5 Punkte - eines auswählen)
 
-- [ ] **A)** Einsatz des Saga-Patterns: Implementieren Sie konkret 1 Microservice welches das Saga Pattern verwendet (als Ersatz für Distributed Transactions). Beschreiben Sie in diesem Zusammenhang auch das Protokoll 2PC – two-phase commit. https://microservices.io/patterns/data/saga.html (5 Punkte)
+- [x] **A)** Einsatz des Saga-Patterns: Implementieren Sie konkret 1 Microservice welches das Saga Pattern verwendet (als Ersatz für Distributed Transactions). Beschreiben Sie in diesem Zusammenhang auch das Protokoll 2PC – two-phase commit. https://microservices.io/patterns/data/saga.html (5 Punkte)
 
 - [ ] **B)** Konsumieren eines beliebigen Service aus der „Cloud": Implementieren Sie konkret 1 Microservice welches ein beliebiges „fremdes" (Cloud)-Service verwendet (5 Punkte)
 

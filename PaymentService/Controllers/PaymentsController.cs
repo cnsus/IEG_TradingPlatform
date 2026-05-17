@@ -13,10 +13,12 @@ namespace PaymentService.Controllers
     public class PaymentsController : ControllerBase
     {
         private readonly IPaymentRepository _repository;
+        private readonly IWebhookService _webhookService;
 
-        public PaymentsController(IPaymentRepository repository)
+        public PaymentsController(IPaymentRepository repository, IWebhookService webhookService)
         {
             _repository = repository;
+            _webhookService = webhookService;
         }
 
         // GET: api/payments
@@ -39,10 +41,16 @@ namespace PaymentService.Controllers
         }
 
         // POST: api/payments
+        // Aufgabe 7: Nach dem Erstellen eines Payments werden alle registrierten
+        // Webhook-Subscriber ueber das neue Payment benachrichtigt.
         [HttpPost]
-        public IActionResult Create([FromBody] Payment payment)
+        public async Task<IActionResult> Create([FromBody] Payment payment)
         {
             var created = _repository.Add(payment);
+
+            // Webhook-Benachrichtigung an alle Subscriber senden (fire-and-forget Stil)
+            await _webhookService.NotifySubscribersAsync(created);
+
             return CreatedAtAction(nameof(GetById), new { id = created.Id }, created);
         }
     }

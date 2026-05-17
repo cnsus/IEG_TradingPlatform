@@ -19,6 +19,9 @@ builder.Services.AddSwaggerGen();
 // Lokalen Datastore als Service registrieren
 builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
 
+// Aufgabe 7: Webhook-Service als Singleton registrieren (verwaltet Subscriber-Liste)
+builder.Services.AddSingleton<IWebhookService, WebhookService>();
+
 var app = builder.Build();
 
 app.UseSwagger();

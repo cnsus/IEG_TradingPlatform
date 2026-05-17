@@ -1,14 +1,17 @@
 # Aufgabe 1 (25 Punkte)
 
-## a) Analyse & Cloud Deployment
+> [!IMPORTANT]
+> **Constraint:** Above all, after completing this assignment, it is important to verify that the software still works.
 
-#TODO
+## a) Analyse & Cloud Deployment
 
 ### Aufgabenstellung
 
 Analyse: Machen Sie sich mit dem Ausgangs-Source-Code „SolTradingPlatform" vertraut. Publizieren Sie die beiden Services „MeiShop" und „IEGEasyCreditCardService" in die Microsoft Azure Cloud und testen Sie die Funktionalität. Alternativ können Sie die Projekte natürlich auch onpremise hosten (0 Punkte)
 
 ### Ausarbeitung
+
+Die Services der Trading Platform werden für Entwicklungszwecke on-premise (lokal) gehostet. Hierfür stehen die Skripte `start-all.bat` und `start-all.sh` zur Verfügung, die alle Microservices (wie `MeiShop` und `IEGEasyCreditCardService`) sowie die Consul-Service-Discovery lokal hochfahren. Die Kommunikation zwischen den Services erfolgt über REST (HTTP/HTTPS) sowie gRPC (für das Logging). Da die Aufgabe die Alternative bietet, die Projekte on-premise zu hosten, wurde dieser Ansatz gewählt, um die Entwicklungsumgebung portabel und simpel zu halten.
 
 
 ---
@@ -67,8 +70,6 @@ Der `ProductService` weiss nichts von Kreditkarten, der `IEGEasyCreditcardServic
 ---
 
 ## c) Detailbeschreibung Schnittstellen
-
-#TODO
 
 ### Aufgabenstellung
 
@@ -180,8 +181,6 @@ Der Client ruft entweder den `PaymentService` direkt an oder geht ueber das Gate
 ---
 
 ## d) Detailbeschreibung Datenhaltung
-
-#TODO
 
 ### Aufgabenstellung
 
