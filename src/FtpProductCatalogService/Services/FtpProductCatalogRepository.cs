@@ -34,19 +34,55 @@ namespace FtpProductCatalogService.Services
                 ValidateAnyCertificate = true
             };
 
-            using var ftp = new AsyncFtpClient(host, user, pass, port, config);
-            await ftp.Connect();
+            try
+            {
+                using var ftp = new AsyncFtpClient(host, user, pass, port, config);
+                await ftp.Connect();
 
-            using var stream = new MemoryStream();
-            await ftp.DownloadStream(stream, filePath);
-            stream.Position = 0;
+                using var stream = new MemoryStream();
+                await ftp.DownloadStream(stream, filePath);
+                stream.Position = 0;
 
-            using var reader = new StreamReader(stream);
-            var content = await reader.ReadToEndAsync();
+                using var reader = new StreamReader(stream);
+                var content = await reader.ReadToEndAsync();
 
-            _logger.LogInformation("products.txt erfolgreich geladen.");
+                _logger.LogInformation("products.txt erfolgreich vom FTP-Server geladen.");
 
-            // Eine Zeile = ein Produkt
+                return ParseProducts(content);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogWarning(ex, "FTP-Server nicht erreichbar oder Fehler beim Download. Verwende lokalen Fallback-Persistencestore (Lokale products.txt)...");
+                
+                try
+                {
+                    // Versuche lokale products.txt zu lesen
+                    var localPath = Path.Combine(AppContext.BaseDirectory, "products.txt");
+                    if (!File.Exists(localPath))
+                    {
+                        // Falls die Datei im AppContext nicht existiert, suche im Projektordner
+                        localPath = Path.Combine(Directory.GetCurrentDirectory(), "products.txt");
+                    }
+
+                    if (File.Exists(localPath))
+                    {
+                        var content = await File.ReadAllTextAsync(localPath);
+                        _logger.LogInformation("Lokale products.txt erfolgreich geladen.");
+                        return ParseProducts(content);
+                    }
+                }
+                catch (Exception localEx)
+                {
+                    _logger.LogError(localEx, "Fehler beim Lesen der lokalen products.txt");
+                }
+
+                // Absoluter Fallback, falls auch die Datei fehlt
+                return new List<string> { "FTP-Monitor (Hartcodierter Fallback)", "FTP-Keyboard (Hartcodierter Fallback)", "FTP-Mouse (Hartcodierter Fallback)" };
+            }
+        }
+
+        private IEnumerable<string> ParseProducts(string content)
+        {
             return content
                 .Split('\n', StringSplitOptions.RemoveEmptyEntries)
                 .Select(line => line.Trim())

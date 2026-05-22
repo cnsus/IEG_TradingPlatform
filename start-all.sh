@@ -26,19 +26,22 @@ echo "[1/12] Starte gRPC LoggingService (http://localhost:5500)..."
 (cd "$SCRIPT_DIR/src/LoggingService" && dotnet run) &
 sleep 2
 
-# 2. CreditcardService Instanz 1 (Standard-Port)
+# 2. CreditcardService bauen & starten
+echo "Baue CreditcardService vorab, um Build-Konflikte zu vermeiden..."
+dotnet build "$SCRIPT_DIR/src/IEGEasyCreditcardService/IEGEasyCreditcardService.csproj" -c Debug
+
 echo "[2/12] Starte CreditcardService Instanz 1 (https://localhost:7231)..."
-(cd "$SCRIPT_DIR/src/IEGEasyCreditcardService" && dotnet run --launch-profile https) &
+(cd "$SCRIPT_DIR/src/IEGEasyCreditcardService" && dotnet run --no-build --launch-profile https) &
 sleep 1
 
 # 3. CreditcardService Instanz 2
 echo "[3/12] Starte CreditcardService Instanz 2 (https://localhost:7232)..."
-(cd "$SCRIPT_DIR/src/IEGEasyCreditcardService" && dotnet run --urls "https://localhost:7232;http://localhost:5229") &
+(cd "$SCRIPT_DIR/src/IEGEasyCreditcardService" && dotnet run --no-build --urls "https://localhost:7232;http://localhost:5229") &
 sleep 1
 
 # 4. CreditcardService Instanz 3
 echo "[4/12] Starte CreditcardService Instanz 3 (https://localhost:7233)..."
-(cd "$SCRIPT_DIR/src/IEGEasyCreditcardService" && dotnet run --urls "https://localhost:7233;http://localhost:5230") &
+(cd "$SCRIPT_DIR/src/IEGEasyCreditcardService" && dotnet run --no-build --urls "https://localhost:7233;http://localhost:5230") &
 sleep 1
 
 # 5. ProductService

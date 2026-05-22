@@ -19,7 +19,10 @@ namespace MeiShop.Controllers
         [HttpGet]
         public async Task<IEnumerable<string>> GetAsync()
         {
-            var httpClient = new HttpClient();
+            using var httpClient = new HttpClient(new HttpClientHandler
+            {
+                ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator
+            });
 
             var response = await httpClient.GetAsync(productServiceUrl);
 
