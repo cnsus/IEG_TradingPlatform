@@ -19,14 +19,14 @@ Bevor irgendein Code geschrieben oder eine Aufgabe begonnen wird:
 
 1. [documentation/0Aufgabenstellung.md](documentation/0Aufgabenstellung.md) öffnen → Status der Checkbox prüfen (`[x]` = erledigt, `[ ]` = offen).
 2. Die zugehörige Datei `documentation/AufgabeN.md` lesen → ist im Abschnitt "Ausarbeitung" bereits Inhalt vorhanden?
-3. Den relevanten Service-Ordner prüfen (z. B. [PaymentService/](PaymentService/), [ProductService/](ProductService/)) → existiert die Funktionalität schon im Code?
+3. Den relevanten Service-Ordner prüfen (z. B. [PaymentService/](src/PaymentService/), [ProductService/](src/ProductService/)) → existiert die Funktionalität schon im Code?
 4. Falls ja: **Nicht neu implementieren.** Stattdessen Rückfrage an User: "Aufgabe X scheint bereits umgesetzt in Datei Y. Soll ich erweitern, überarbeiten oder etwas anderes machen?"
 
 ### 2. Mini-Doku-Pflicht für jede Aufgabe
 Jede bearbeitete Aufgabe **muss** in der entsprechenden Datei unter [documentation/](documentation/) dokumentiert werden:
 
-- **Existierende Datei:** `documentation/AufgabeN.md` (für Aufgabe 1–10) bzw. `documentation/TEDX_*.md` für TED-Themen.
-- **Format pro Aufgabe** (siehe [documentation/Aufgabe5.md](documentation/Aufgabe5.md) als Vorlage):
+- **Existierende Datei:** `documentation/Aufgaben/AufgabeN.md` (für Aufgabe 1–10) bzw. `documentation/TED/TEDX_*.md` für TED-Themen.
+- **Format pro Aufgabe** (siehe [documentation/Aufgaben/Aufgabe5.md](documentation/Aufgaben/Aufgabe5.md) als Vorlage):
   ```markdown
   ## Aufgabenstellung
   <Original-Text aus 0Aufgabenstellung.md>
@@ -77,8 +77,8 @@ Markierung in **Deutsch** mit dem Schlüsselwort **`BEISPIEL`** oder **`HARDCODE
 
 ### 5. Konsistenz mit bestehendem Code
 - **Bestehende Patterns übernehmen** statt neue einführen. Beispiele:
-  - Repository-Pattern wie in [PaymentService/Services/PaymentRepository.cs](PaymentService/Services/PaymentRepository.cs)
-  - Controller-Struktur wie in [PaymentService/Controllers/PaymentsController.cs](PaymentService/Controllers/PaymentsController.cs)
+  - Repository-Pattern wie in [PaymentService/Services/PaymentRepository.cs](src/PaymentService/Services/PaymentRepository.cs)
+  - Controller-Struktur wie in [PaymentService/Controllers/PaymentsController.cs](src/PaymentService/Controllers/PaymentsController.cs)
   - Port-Konvention: siehe Tabelle in [Readme.md](Readme.md) — **keine** neuen Ports erfinden ohne Rücksprache.
 - Vor jeder neuen Datei: existiert ein vergleichbares Schema in einem anderen Service? Dann analog aufbauen.
 
@@ -86,14 +86,15 @@ Markierung in **Deutsch** mit dem Schlüsselwort **`BEISPIEL`** oder **`HARDCODE
 
 ## Service-Übersicht (Stand: aktuell)
 
-| Service | Port | Zweck | Status |
-|---|---|---|---|
-| MeiShop | 5148 | Frontend / API Gateway | vorhanden |
-| ProductService | 5221 | Produkte aus Local Datastore | vorhanden |
-| FtpProductCatalogService | 5171 | Produkte aus FTP | vorhanden |
-| IEGEasyCreditCardService | 5201/5202 | Kreditkarten, multi-instance | vorhanden |
-| PaymentService | 5069 | JSON/XML/CSV Content Negotiation | vorhanden |
-| LoggingService | 5223 | gRPC Logging | vorhanden |
+| MeiShop | 7024 | Frontend / API Gateway | vorhanden |
+| ProductService | 7200 | Produkte aus Local Datastore | vorhanden |
+| FtpProductCatalogService | 7300 | Produkte aus FTP | vorhanden |
+| IEGEasyCreditCardService | 7231/7232/7233 | Kreditkarten, multi-instance | vorhanden |
+| PaymentService | 7400 | JSON/XML/CSV Content Negotiation | vorhanden |
+| LoggingService | 5500 | gRPC Logging | vorhanden |
+| ProductODataService | 7500 | OData v4 Produktkatalog | vorhanden |
+| WebhookSubscriberService | 7600 | Webhook Empfänger | vorhanden |
+| OrderSagaService | 7700 | SAGA Orchestrator | vorhanden |
 | Consul | 8500 | Service Discovery | extern |
 
 > Vor Hinzufügen eines Services: prüfen, ob die Aufgabe nicht in einem bestehenden Service erweitert werden kann.
@@ -117,7 +118,7 @@ Markierung in **Deutsch** mit dem Schlüsselwort **`BEISPIEL`** oder **`HARDCODE
 - ❌ Kein eigenmächtiges Refactoring fertiger Aufgaben.
 - ❌ Keine Frameworks/Tools einführen, die nicht in der Aufgabenstellung verlangt sind (kein MediatR, kein AutoMapper, kein FluentValidation).
 - ❌ Keine `Program.cs`-Umstrukturierung in bestehenden Services, außer die Aufgabe verlangt es.
-- ❌ Keine Doku-Dateien außerhalb von [documentation/](documentation/) anlegen (Ausnahme: [Readme.md](Readme.md), [Kurzdoku.md](Kurzdoku.md), diese Datei).
+- ❌ Keine Doku-Dateien außerhalb von [documentation/](documentation/) anlegen (Ausnahme: [Readme.md](Readme.md), diese Datei).
 - ❌ Keine englischen Texte in der Doku — Sprache ist Deutsch.
 - ❌ Niemals `git push`, `git commit --amend` oder destruktive Git-Befehle ohne explizite User-Aufforderung.
 
@@ -134,7 +135,7 @@ dotnet build SolTradingPlatform.sln
 start-all.bat         # Windows
 
 # Einzelnen Service starten
-cd <ServiceName> && dotnet run
+cd src/<ServiceName> && dotnet run
 ```
 
 ---
@@ -144,5 +145,5 @@ cd <ServiceName> && dotnet run
 **Nachfragen statt raten.** Lieber eine Rückfrage zu viel als ein Implementierungsweg, der zurückgebaut werden muss. Insbesondere bei:
 
 - Aufgaben, die mehrere Auslegungen zulassen (z. B. "asynchrone Kommunikation" — Theorie oder Implementierung?)
-- Bonus-Aufgaben aus [documentation/Bonus_Aufgaben.md](documentation/Bonus_Aufgaben.md)
+- Bonus-Aufgaben aus [documentation/Aufgaben/Bonus_Aufgaben.md](documentation/Aufgaben/Bonus_Aufgaben.md)
 - Wenn die Aufgabenstellung Punkte mit "(theoretische) Überlegungen" enthält → reine Doku, kein Code.

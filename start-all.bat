@@ -7,44 +7,44 @@ echo.
 echo Starte alle Microservices...
 
 REM 1. gRPC LoggingService
-start "LoggingService (gRPC)          (http://localhost:5500)" cmd /k "cd /d %~dp0LoggingService && dotnet run"
+start "LoggingService (gRPC)          (http://localhost:5500)" cmd /k "cd /d %~dp0src\\LoggingService && dotnet run"
 timeout /t 2 /nobreak >nul
 
 REM CreditcardService einmal bauen, damit die parallelen Instanzen sich nicht die bin/obj-Dateien gegenseitig sperren
 echo Baue CreditcardService einmalig...
-pushd "%~dp0IEGEasyCreditcardService"
+pushd "%~dp0src\\IEGEasyCreditcardService"
 dotnet build -v:minimal
 popd
 
 REM 2. CreditcardService Instanz 1 (Standard)
-start "CreditcardService Instanz 1   (https://localhost:7231)" cmd /k "cd /d %~dp0IEGEasyCreditcardService && dotnet run --no-build --launch-profile https"
+start "CreditcardService Instanz 1   (https://localhost:7231)" cmd /k "cd /d %~dp0src\\IEGEasyCreditcardService && dotnet run --no-build --launch-profile https"
 
 REM 3. CreditcardService Instanz 2
-start "CreditcardService Instanz 2   (https://localhost:7232)" cmd /k "cd /d %~dp0IEGEasyCreditcardService && dotnet run --no-build --urls https://localhost:7232;http://localhost:5229"
+start "CreditcardService Instanz 2   (https://localhost:7232)" cmd /k "cd /d %~dp0src\\IEGEasyCreditcardService && dotnet run --no-build --urls https://localhost:7232;http://localhost:5229"
 
 REM 4. CreditcardService Instanz 3
-start "CreditcardService Instanz 3   (https://localhost:7233)" cmd /k "cd /d %~dp0IEGEasyCreditcardService && dotnet run --no-build --urls https://localhost:7233;http://localhost:5230"
+start "CreditcardService Instanz 3   (https://localhost:7233)" cmd /k "cd /d %~dp0src\\IEGEasyCreditcardService && dotnet run --no-build --urls https://localhost:7233;http://localhost:5230"
 
 REM 5. ProductService
-start "ProductService                (https://localhost:7200)" cmd /k "cd /d %~dp0ProductService && dotnet run --launch-profile https"
+start "ProductService                (https://localhost:7200)" cmd /k "cd /d %~dp0src\\ProductService && dotnet run --launch-profile https"
 
 REM 6. FtpProductCatalogService
-start "FtpProductCatalogService      (https://localhost:7300)" cmd /k "cd /d %~dp0FtpProductCatalogService && dotnet run --launch-profile https"
+start "FtpProductCatalogService      (https://localhost:7300)" cmd /k "cd /d %~dp0src\\FtpProductCatalogService && dotnet run --launch-profile https"
 
 REM 7. PaymentService
-start "PaymentService                (https://localhost:7400)" cmd /k "cd /d %~dp0PaymentService && dotnet run --launch-profile https"
+start "PaymentService                (https://localhost:7400)" cmd /k "cd /d %~dp0src\\PaymentService && dotnet run --launch-profile https"
 
 REM 8. ProductODataService (Aufgabe 8: OData)
-start "ProductODataService           (https://localhost:7500)" cmd /k "cd /d %~dp0ProductODataService && dotnet run --launch-profile https"
+start "ProductODataService           (https://localhost:7500)" cmd /k "cd /d %~dp0src\\ProductODataService && dotnet run --launch-profile https"
 
 REM 9. WebhookSubscriberService (Aufgabe 7: Webhooks)
-start "WebhookSubscriberService      (https://localhost:7600)" cmd /k "cd /d %~dp0WebhookSubscriberService && dotnet run --launch-profile https"
+start "WebhookSubscriberService      (https://localhost:7600)" cmd /k "cd /d %~dp0src\\WebhookSubscriberService && dotnet run --launch-profile https"
 
 REM 10. OrderSagaService (Aufgabe 9: SAGA Pattern)
-start "OrderSagaService              (https://localhost:7700)" cmd /k "cd /d %~dp0OrderSagaService && dotnet run --launch-profile https"
+start "OrderSagaService              (https://localhost:7700)" cmd /k "cd /d %~dp0src\\OrderSagaService && dotnet run --launch-profile https"
 
 REM 11. MeiShop (API Gateway) - zuletzt
-start "MeiShop                       (https://localhost:7024)" cmd /k "cd /d %~dp0MeiShop && dotnet run --launch-profile https"
+start "MeiShop                       (https://localhost:7024)" cmd /k "cd /d %~dp0src\\MeiShop && dotnet run --launch-profile https"
 
 echo.
 echo Alle Services gestartet.

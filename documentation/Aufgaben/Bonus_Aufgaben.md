@@ -26,7 +26,7 @@ Implementieren Sie konkret ein geeignetes Deployment-Szenario
 
 ### Option A) Einsatz des Saga-Patterns (Erledigt in Aufgabe 9)
 
-Die praktische Implementierung des Saga-Patterns wurde bereits im Rahmen von **Aufgabe 9** umgesetzt. Dort wurde der `OrderSagaService` als Orchestrator entwickelt, der einen verteilten Bestellvorgang ueber den `ProductService` und den `PaymentService` hinweg steuert und bei Fehlern kompensierende Transaktionen ausfuehrt (siehe `documentation/Aufgabe9.md`).
+Die praktische Implementierung des Saga-Patterns wurde bereits im Rahmen von **Aufgabe 9** umgesetzt. Dort wurde der `OrderSagaService` als Orchestrator entwickelt, der einen verteilten Bestellvorgang ueber den `ProductService` und den `PaymentService` hinweg steuert und bei Fehlern kompensierende Transaktionen ausfuehrt (siehe `documentation/Aufgaben/Aufgabe9.md`).
 
 #### Das Protokoll 2PC (Two-Phase Commit)
 
