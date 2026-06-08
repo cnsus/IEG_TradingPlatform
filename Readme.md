@@ -18,29 +18,36 @@ Die **IEG Trading Platform** ist eine verteilte Handelsplattform, die auf einer 
 ## Architektur
 
 ```
-                         +------------------+
-                         |     MeiShop      |
-                         |   (Frontend/API) |
-                         +--------+---------+
-                                  |
-            +---------------------+---------------------+
-            |                     |                     |
-   +--------v--------+  +--------v--------+  +---------v---------+
-   | ProductService   |  | FtpProductCatalog|  | PaymentService    |
-   | (Local Datastore)|  | (FTP/File-based) |  | (JSON/XML/CSV)    |
-   +---------+--------+  +------------------+  +---------+---------+
-             |                                           |
-             |                                  +--------v--------+
-             |                                  | IEGEasyCredit-  |
-             |                                  | CardService     |
-             |                                  | (Round Robin)   |
-             |                                  +-----------------+
-             |
-   +---------v---------+         +------------------+
-   |   Consul           |         |  LoggingService  |
-   | (Service Discovery)|         |  (gRPC)          |
-   +--------------------+         +------------------+
-```
+                          +------------------+
+                          |     MeiShop      |
+                          |   (Frontend/API) |
+                          +--------+---------+
+                                   |
+               +-------------------+-------------------+
+               |                   |                   |
+      +--------v--------+  +-------v--------+  +-------v--------+
+      | ProductService   |  | FtpProductCatalog|  | PaymentService |
+      | (Local Datastore)|  | (FTP/File-based) |  | (JSON/XML/CSV) |
+      +--------+---------+  +--------+---------+  +--------+--------+
+               |                    |                    |
+               |                    |                    |
+   +-----------v-----------+  +-----v------+     +-------v-------+
+   | ProductODataService   |  | WebhookSub- |     | IEGEasyCredit |
+   | (OData v4 catalog)    |  | scriberSvc  |     | CardService    |
+   +-----------------------+  | (webhooks)  |     | (Round Robin)  |
+                              +-------------+     +---------------+
+
+                 +----------------+      +-------------------+
+                 |   OrderSagaSvc |      |   LoggingService  |
+                 |  (Saga Orches.)|      |      (gRPC)       |
+                 +----------------+      +-------------------+
+
+                    +-------------------------------+
+                    |           Consul               |
+                    | (Service Discovery & Config)   |
+                    +-------------------------------+
+
+``` 
 
 ---
 
@@ -76,17 +83,18 @@ IEG_TradingPlatform/
 │   ├── WebhookSubscriberService/
 │   ├── OrderSagaService/
 │   └── SimpleWebApiConsoleTest/
-├── documentation/              # Gesamte Dokumentation
+├── documentation/              # Gesamte Dokumentation (Aufgaben & TED-Dateien liegen direkt hier)
 │   ├── 0Aufgabenstellung.md    # Aufgaben-Checklist
-│   ├── Aufgaben/               # Aufgabe 1-10, Bonus
-│   ├── TED/                    # TED 1-11
-│   └── original_specs/         # Originale Aufgabenbeschreibungen
+│   ├── Aufgabe1.md .. Aufgabe10.md
+│   ├── Bonus_Aufgaben.md
+│   ├── TED1_Fachartikelanalyse.md .. TED11_Gesamtloesung.md
+│   └── 0ImplementationPlan.md / weitere Dokumente
 ├── AG-WF-Artefacts/            # Workflow-Artefakte & Projektkontext
 ├── Consul/                     # Consul Konfiguration
 ├── SolTradingPlatform.sln      # Solution-Datei
 ├── start-all.sh / .bat         # Start-Skripte
 ├── Readme.md                   # Diese Datei
-└── CLAUDE.md                   # KI-Richtlinien
+└── .claude/                     # KI-Richtlinien / Tooling (hidden folder)
 ```
 
 ---
