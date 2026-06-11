@@ -1,8 +1,5 @@
 # Aufgabe 10 - Open Data (10 Punkte)
 
-> [!IMPORTANT]
-> **Constraint:** Above all, after completing this assignment, it is important to verify that the software still works.
-
 ## Aufgabenstellung
 
 Machen Sie sich mit dem Begriff „Open Data" vertraut und beschreiben Sie diesen in einigen wenigen Sätzen. Beschreiben Sie außerdem mögliche Anwendungsfälle im Zusammenhang mit der Handelsplattform

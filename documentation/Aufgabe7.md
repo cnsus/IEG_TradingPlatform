@@ -1,8 +1,5 @@
 # Aufgabe 7 - Webhook-Subscriber (10 Punkte)
 
-> [!IMPORTANT]
-> **Constraint:** Above all, after completing this assignment, it is important to verify that the software still works.
-
 ## Aufgabenstellung
 
 Webhook-Subscriber: Überlegen und implementieren Sie ein mögliches Webhook-Szenario (10 Punkte)

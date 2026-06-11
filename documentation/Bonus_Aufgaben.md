@@ -1,7 +1,5 @@
 # BONUS-Punkte (max. 5 Punkte - eines auswählen)
 
-#TODO
-
 ## A) Einsatz des Saga-Patterns (5 Punkte)
 
 Implementieren Sie konkret 1 Microservice welches das Saga Pattern verwendet (als Ersatz für Distributed Transactions). Beschreiben Sie in diesem Zusammenhang auch das Protokoll 2PC – two-phase commit. https://microservices.io/patterns/data/saga.html

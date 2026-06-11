@@ -1,7 +1,5 @@
 # TED 9 - KI, Low-Code & Visionäre Weiterentwicklung (12 Punkte)
 
-# TED 9 - KI, Low-Code & Visionäre Weiterentwicklung (12 Punkte)
-
 ## Aufgabenstellung
 
 (siehe oben)

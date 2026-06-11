@@ -1,8 +1,5 @@
 # Aufgabe 9 - SAGA-Pattern (10 Punkte)
 
-> [!IMPORTANT]
-> **Constraint:** Above all, after completing this assignment, it is important to verify that the software still works.
-
 ## Aufgabenstellung
 
 Machen Sie sich mit dem Begriff SAGA-Pattern vertraut. Überlegen und implementieren Sie ein mögliches SAGA-Pattern Szenario (Service & Client)-Szenario. Umgang mit Ausfallsicherheit – Stichwort: Design for failure / Resilient Software Design (10 Punkte)

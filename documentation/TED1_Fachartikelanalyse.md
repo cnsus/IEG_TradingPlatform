@@ -1,7 +1,5 @@
 # TED 1 - Fachartikelanalyse (8 Punkte)
 
-# TED 1 - Fachartikelanalyse (8 Punkte)
-
 ## Aufgabenstellung
 
 Wählen Sie einen der drei bereitgestellten Fachartikel aus. Analysieren Sie die zentrale Argumentation des Beitrags und erläutern Sie, welchen Beitrag er zur Konzeption, Gestaltung oder Weiterentwicklung von Microservice-Architekturen im Kontext elektronischer Geschäftsprozesse leistet. Übertragen Sie die wesentlichen Erkenntnisse auf Ihre Projektarbeit und reflektieren Sie deren Nutzen, Grenzen und Implikationen für Ihre Lösung.

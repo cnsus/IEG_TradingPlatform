@@ -1,8 +1,5 @@
 # Aufgabe 6 - PaymentService-Broker (10 Punkte)
 
-> [!IMPORTANT]
-> **Constraint:** Above all, after completing this assignment, it is important to verify that the software still works.
-
 ## Aufgabenstellung
 
 (theoretische) Überlegungen zu einem PaymentService-Broker. Dieses Service soll zwischen Shops und Payment-Services „vermitteln".
