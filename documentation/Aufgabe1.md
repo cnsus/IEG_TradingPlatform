@@ -1,8 +1,5 @@
 # Aufgabe 1 (25 Punkte)
 
-> [!IMPORTANT]
-> **Constraint:** Above all, after completing this assignment, it is important to verify that the software still works.
-
 ## a) Analyse & Cloud Deployment
 
 ### Aufgabenstellung

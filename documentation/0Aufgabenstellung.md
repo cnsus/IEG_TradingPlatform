@@ -4,6 +4,8 @@
 
 ## Aufgabe 1 (25 Punkte)
 
+Link zur Ausarbeitung: [Aufgabe 1](Aufgabe1.md)
+
 - [x] **a)** Analyse: Machen Sie sich mit dem Ausgangs-Source-Code „SolTradingPlatform" vertraut. Publizieren Sie die beiden Services „MeiShop" und „IEGEasyCreditCardService" in die Microsoft Azure Cloud und testen Sie die Funktionalität. Alternativ können Sie die Projekte natürlich auch onpremise hosten (0 Punkte)
 
 - [x] **b)** Beschreiben Sie zuerst den Ansatz „Domain-Driven Design (DDD) im Zusammenhang mit Microservices. Überlegen Sie welche weiteren Microservices in Zusammenhang mit der Trading Platform sinnvoll wären. Beschreiben Sie danach die Funktionalitäten / Verantwortlichkeiten der einzelnen Microservices – Stichwort: Business Capabilities
@@ -16,11 +18,15 @@
 
 ## Aufgabe 2 (10 Punkte)
 
+Link zur Ausarbeitung: [Aufgabe 2](Aufgabe2.md)
+
 - [x] Erstellen Sie 2 weitere Microservice Produktkataloge: Erstellen Sie ein Microservice, welches eine Liste von Produkten anbietet. Der Inhalt der Liste soll dabei aus einem „microservice local datastore" kommen – (Decentralized Data Management). Ersetzen Sie die hard codierten Werte im MeiShop/ProductList-Controller durch den Aufruf des soeben erstellen Services. Ein weiterer Produktkatalog-Service soll Produkte aus einem Text File auf einem FTP-Server auslesen oder einem anderen geeigneten Persistencestore und zur Verfügung stellen. (10 Punkte)
 
 ---
 
 ## Aufgabe 3 (10 Punkte)
+
+Link zur Ausarbeitung: [Aufgabe 3](Aufgabe3.md)
 
 - [x] Skalierung, Ausfallssicherheit und Logging (Design for failure) für CreditPaymentService. Detailsbeschreibung: Publizieren Sie das Service „IEGEasyCreditCardService" mehrfach und rufen Sie die Services im „Round Robin" Stil auf. Falls es beim Aufruf eines Service zu einem Fehler kommt, soll es eine Retry-Logik geben, außerdem soll der aufgetretene Fehler mit Hilfe eines zentralen Logging-Service (gRPC) protokolliert werden. Nach n erfolglosen Versuchen, soll das nächste Service aufgerufen werden. Recherchieren Sie zusätzlich nach einem geeigneten Framework und Skalierungsmöglichkeiten setzen Sie dieses gegebenenfalls ein (10 Punkte)
 
@@ -28,11 +34,15 @@
 
 ## Aufgabe 4 (10 Punkte)
 
+Link zur Ausarbeitung: [Aufgabe 4](Aufgabe4.md)
+
 - [x] (theoretische) Überlegungen zum Einsatz von Asynchronen Kommunikationsstilen in der Handelsplattform (10 Punkte) – Pattern: Messaging
 
 ---
 
 ## Aufgabe 5 (10 Punkte)
+
+Link zur Ausarbeitung: [Aufgabe 5](Aufgabe5.md)
 
 - [x] Schreiben Sie ein zusätzliches „Paymentservice". Dieses Payment-Service soll sowohl JSON, XML-Nachrichten als auch Nachrichten im Format CSV verarbeiten und erzeugen können. Orientieren Sie sich an dem Pattern - HTTP Content Negotiation in REST APIs (restfulapi.net) (10 Punkte)
 
@@ -40,11 +50,15 @@
 
 ## Aufgabe 6 (10 Punkte)
 
+Link zur Ausarbeitung: [Aufgabe 6](Aufgabe6.md)
+
 - [x] (theoretische) Überlegungen zu einem PaymentService-Broker. Dieses Service soll zwischen Shops und Payment-Services „vermitteln". Mögliche Info-Quellen: Broker Pattern - GeeksforGeeks, Message Broker Pattern for Microservices Interservice Communication | Redis, http://www.enterpriseintegrationpatterns.com/patterns/messaging/CanonicalDataModel.html – Recherchieren Sie dazu zusätzliche Patterns und Quellen
 
 ---
 
 ## Aufgabe 7 (10 Punkte)
+
+Link zur Ausarbeitung: [Aufgabe 7](Aufgabe7.md)
 
 - [x] Webhook-Subscriber: Überlegen und implementieren Sie ein mögliches Webhook-Szenario (10 Punkte)
 
@@ -52,17 +66,23 @@
 
 ## Aufgabe 8 (10 Punkte)
 
+Link zur Ausarbeitung: [Aufgabe 8](Aufgabe8.md)
+
 - [x] Machen Sie sich mit dem Begriff OData vertraut. Überlegen und implementieren Sie ein mögliches OData (Service & Client)-Szenario (10 Punkte)
 
 ---
 
 ## Aufgabe 9 (10 Punkte)
 
+Link zur Ausarbeitung: [Aufgabe 9](Aufgabe9.md)
+
 - [x] Machen Sie sich mit dem Begriff SAGA-Pattern vertraut. Überlegen und implementieren Sie ein mögliches SAGA-Pattern Szenario (Service & Client)-Szenario. Umgang mit Ausfallsicherheit – Stichwort: Design for failure / Resilient Software Design (10 Punkte)
 
 ---
 
 ## Aufgabe 10 (10 Punkte)
+
+Link zur Ausarbeitung: [Aufgabe 10](Aufgabe10.md)
 
 - [x] Machen Sie sich mit dem Begriff „Open Data" vertraut und beschreiben Sie diesen in einigen wenigen Sätzen. Beschreiben Sie außerdem mögliche Anwendungsfälle im Zusammenhang mit der Handelsplattform
 
@@ -75,6 +95,8 @@
 ---
 
 ## TED 1 - Fachartikelanalyse (8 Punkte)
+
+Link zur Ausarbeitung: [TED 1](TED1_Fachartikelanalyse.md)
 
 - [x] Wählen Sie einen der drei bereitgestellten Fachartikel aus. Analysieren Sie die zentrale Argumentation des Beitrags und erläutern Sie, welchen Beitrag er zur Konzeption, Gestaltung oder Weiterentwicklung von Microservice-Architekturen im Kontext elektronischer Geschäftsprozesse leistet. Übertragen Sie die wesentlichen Erkenntnisse auf Ihre Projektarbeit und reflektieren Sie deren Nutzen, Grenzen und Implikationen für Ihre Lösung.
 
@@ -91,11 +113,15 @@
 
 ## TED 2 - Makro- und Mikro-Architektur (8 Punkte)
 
+Link zur Ausarbeitung: [TED 2](TED2_Makro_Mikro_Architektur.md)
+
 - [x] Beschreiben Sie die Makro- und Mikro-Architektur Ihrer Lösung zum Thema „most wanTED". Stellen Sie auf Makro-Ebene die zentralen fachlichen Bausteine, die daraus abgeleiteten Microservices sowie deren Kommunikationsbeziehungen dar. Erläutern Sie auf Mikro-Ebene beispielhaft den inneren Aufbau von ein bis zwei Microservices, insbesondere im Hinblick auf Schnittstellen, Geschäftslogik und Datenhaltung. Begründen Sie kurz, inwiefern Ihre Architektur die Anforderungen an Erweiterbarkeit, Austauschbarkeit und Skalierbarkeit unterstützt.
 
 ---
 
 ## TED 3 - Domain Driven Design (8 Punkte)
+
+Link zur Ausarbeitung: [TED 3](TED3_Domain_Driven_Design.md)
 
 - [x] Nutzen Sie die in Aufgabe 2 entwickelte Makro- und Mikro-Architektur als Ausgangspunkt und konkretisieren Sie den fachlichen und technischen Zuschnitt Ihrer Microservices mit Hilfe von Domain Driven Design. Arbeiten Sie geeignete Bounded Contexts heraus und erläutern Sie die Beziehungen zwischen diesen. Gehen Sie dabei auf geeignete DDD-Konzepte wie Shared Kernel, Customer/Supplier, Conformist, Anticorruption Layer, Separate Ways, Open Host Service und Published Language ein und begründen Sie deren Einsatz oder bewusste Nicht-Verwendung in Ihrem Entwurf. Das Ergebnis dieser Aufgabe soll eine strukturierte Darstellung der Aufgaben der einzelnen Microservices, ihrer Kommunikationswege und -stile, der ausgetauschten Daten einschließlich Formate sowie der Datenhaltung sein (4 Punkte)
 
@@ -129,11 +155,15 @@
 
 ## TED 8 - Implementierung: Alternative „Produktempfehlung" (12 Punkte)
 
+Link zur Ausarbeitung: [TED 8](TED8_Produktempfehlung_SOAP_Workflow.md)
+
 - [x] Ergänzend zur umfragebasierten Entscheidungsunterstützung soll im Projekt „most wanTED" auch die Möglichkeit vorgesehen werden, eine besonders prominente Produktplatzierung kostenpflichtig zu beantragen. Hierzu wird die Spezifikation des zu bewerbenden Produkts an einen SOAP-Endpunkt übermittelt. Die eingehende Promotionsanfrage durchläuft anschließend einen festgelegten Genehmigungsprozess mit mehreren fachlichen Entscheidungsschritten. Am Ende des Prozesses wird die Produktpromotion in Abhängigkeit von Produktpreis, Produktbeschreibung und der Freigabe durch die Gesellschafterinnen und Gesellschafter genehmigt oder abgelehnt. Beschreiben Sie, wie dieser Prozess mit Hilfe einer Workflow-Engine modelliert, ausgeführt und überwacht werden kann. Gehen Sie dabei insbesondere auf Prozessschritte, Zustandsübergänge, beteiligte Rollen sowie die Integration in Ihre bestehende Microservice-Architektur ein. Erläutern Sie außerdem die Begriffe Business Process Modelling und BPEL und ordnen Sie diese fachlich in den beschriebenen Anwendungsfall ein. Vergleichen Sie den BPEL-Ansatz mit modernen Formen der Orchestrierung und Choreographie von Microservices und reflektieren Sie deren jeweilige Eignung für die „most wanTED"-Lösung.
 
 ---
 
 ## TED 9 - KI, Low-Code & Visionäre Weiterentwicklung (12 Punkte)
+
+Link zur Ausarbeitung: [TED 9](TED9_KI_LowCode_Vision.md)
 
 - [x] **a)** KI-gestützte Unterstützung eines Geschäftsprozesses: Beschreiben Sie, wie ein ausgewählter Geschäftsprozess Ihrer Lösung durch den Einsatz von Künstlicher Intelligenz unterstützt, erweitert oder teilweise automatisiert werden kann. Begründen Sie Ihre Auswahl und diskutieren Sie die Vorteile, Grenzen und Risiken des gewählten Ansatzes. (3 Punkte)
 
@@ -147,11 +177,15 @@
 
 ## TED 10 - Aufbereitung und Präsentation (20 Punkte)
 
+Link zur Ausarbeitung: [TED 10](TED10_Praesentation.md)
+
 - [x] Die Präsentation dient nicht nur der Darstellung, sondern auch der fachlichen Einordnung und der nachvollziehbaren Demonstration der erarbeiteten Lösung. Ebenso werden eine verständliche, durchdachte und schlüssige schriftliche Dokumentation sowie eine kompakte und sachliche Aufbereitung der Ergebnisse als wesentliche Bestandteile der Projektarbeit betrachtet. Entscheidend sind nicht Umfang, Mindestseitenzahlen oder die bloße Aneinanderreihung bzw. Übernahme von Inhalten, sondern die fachliche Qualität, eigenständige Strukturierung, Nachvollziehbarkeit und Konsistenz der Ausarbeitung. Wird keine Präsentation durchgeführt, können die entsprechenden Punkte für Präsentation, Demonstration und verteidigende Erläuterung nicht erreicht werden.
 
 ---
 
 ## TED 11 - Funktionierende Gesamtlösung (8 Punkte)
+
+Link zur Ausarbeitung: [TED 11](TED11_Gesamtloesung.md)
 
 - [x] Führen Sie die im Rahmen der Projektarbeit entwickelten Komponenten zu einer nachvollziehbaren und demonstrierbaren Gesamtlösung zusammen. Zeigen Sie, dass die wesentlichen Bausteine Ihrer Architektur im Zusammenspiel funktionsfähig sind und die konzipierten Integrationsbeziehungen, Kommunikationswege und technischen Entscheidungen in einer konsistenten Gesamtlösung umgesetzt wurden.
 
@@ -162,6 +196,8 @@
 # BONUS-Punkte (max. 5 Punkte - eines auswählen)
 
 - [x] **A)** Einsatz des Saga-Patterns: Implementieren Sie konkret 1 Microservice welches das Saga Pattern verwendet (als Ersatz für Distributed Transactions). Beschreiben Sie in diesem Zusammenhang auch das Protokoll 2PC – two-phase commit. https://microservices.io/patterns/data/saga.html (5 Punkte)
+
+Link zur Ausarbeitung: [Bonus A](Bonus_Aufgaben.md)
 
 - [ ] **B)** Konsumieren eines beliebigen Service aus der „Cloud": Implementieren Sie konkret 1 Microservice welches ein beliebiges „fremdes" (Cloud)-Service verwendet (5 Punkte)
 
