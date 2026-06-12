@@ -10,7 +10,13 @@ namespace ProductService.Services
             "Smartphone",
             "Tablet",
             "Headphones",
-            "Smartwatch"
+            "Smartwatch",
+            "NVIDIA RTX 5090",
+            "Intel Core i9-15900K",
+            "AMD Ryzen 9 9950X",
+            "Corsair Vengeance 128GB DDR5",
+            "Samsung Odyssey Neo G9",
+            "Logitech G Pro X Superlight 2"
         };
 
         public IEnumerable<string> GetAll() => _products;

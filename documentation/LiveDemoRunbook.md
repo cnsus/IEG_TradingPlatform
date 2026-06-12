@@ -109,7 +109,7 @@ Demonstriere ereignisgesteuerte Kommunikation zwischen Diensten.
       -H "Content-Type: application/json" \
       -d '{
         "CallbackUrl": "https://localhost:7600/api/Webhook/payment",
-        "EventType": "PaymentCreated"
+        "EventType": "payment.created"
       }'
     ```
 2.  **Zahlung erzeugen:**
@@ -134,23 +134,16 @@ Demonstriere ereignisgesteuerte Kommunikation zwischen Diensten.
 ### Szenario 5: Resilience, Load Balancing & gRPC Logging
 Demonstriere Ausfallsicherheit (Polly Retry + Round-Robin Load Balancing) und zentrales Logging.
 
-1.  **Kaufvorgang durchführen:**
-    Führe einen Checkout über MeiShop aus, welcher an die Consul-registrierten Creditcard-Instanzen weiterleitet:
+1.  **Zahlungsmethoden abrufen (Load Balancing):**
+    Führe einen Aufruf über MeiShop aus, welcher an die registrierten Creditcard-Instanzen weiterleitet (Round-Robin):
     ```bash
-    curl -k -X POST https://localhost:7024/api/ProductCatalog/checkout \
-      -H "Content-Type: application/json" \
-      -d '{
-        "CustomerCreditCardnumber": "1111-2222-3333-4444",
-        "Vendor": "DemoShop",
-        "Product": "Laptop",
-        "AmountInEuro": 800
-      }'
+    curl -k https://localhost:7024/api/PaymentMethods
     ```
 2.  **Chaos Step (Instanz beenden):**
     Stoppe die erste Creditcard-Instanz (Port `7231`) manuell im Terminal (z. B. durch `Ctrl+C` oder Task-Kill).
-3.  **Kaufvorgang wiederholen:**
-    Führe denselben `POST`-Befehl erneut aus. Er läuft ohne Fehler durch!
-    *   *Erklärung:* MeiShop bemerkt den Fehler, startet die Polly-Retry-Logik und kontaktiert erfolgreich die nächste gesunde Instanz (z. B. Port `7232`).
+3.  **Aufruf wiederholen (Resilience & Failover):**
+    Führe denselben `GET`-Befehl erneut aus. Er läuft trotz des Ausfalls ohne Fehler durch!
+    *   *Erklärung:* MeiShop bemerkt den Fehler, startet die Polly-Retry-Logik (versucht es 4x auf Port 7231) und wechselt (Failover) erfolgreich auf die nächste gesunde Instanz (Port `7232`).
 4.  **Zentrales Logging (gRPC):**
     Zeige, dass der Verbindungsfehler via gRPC an den `LoggingService` gesendet wurde und in der Datei `logs/error_log.txt` dokumentiert ist.
 
