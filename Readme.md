@@ -73,28 +73,29 @@ Die **IEG Trading Platform** ist eine verteilte Handelsplattform, die auf einer 
 ```
 IEG_TradingPlatform/
 ├── src/                        # Alle Microservice-Projekte
-│   ├── MeiShop/                # API Gateway
-│   ├── ProductService/
-│   ├── FtpProductCatalogService/
-│   ├── IEGEasyCreditcardService/
-│   ├── PaymentService/
-│   ├── LoggingService/
-│   ├── ProductODataService/
-│   ├── WebhookSubscriberService/
-│   ├── OrderSagaService/
-│   └── SimpleWebApiConsoleTest/
-├── documentation/              # Gesamte Dokumentation (Aufgaben & TED-Dateien liegen direkt hier)
+│   ├── MeiShop/                # API Gateway / Frontend
+│   ├── ProductService/         # Lokaler Produkt-Service
+│   ├── FtpProductCatalogService/ # FTP-basierter Produkt-Service
+│   ├── IEGEasyCreditcardService/ # Kreditkarten-Service (Load Balanced)
+│   ├── PaymentService/         # Content-Negotiation-Zahlungsservice
+│   ├── LoggingService/         # Zentraler gRPC Logger
+│   ├── ProductODataService/    # OData v4 Produktkatalog
+│   ├── WebhookSubscriberService/ # Webhook-Empfänger für Zahlungen
+│   ├── OrderSagaService/       # SAGA-Pattern Orchestrator
+│   └── SimpleWebApiConsoleTest/ # Test-Konsolen-Client
+├── documentation/              # Gesamte Dokumentation (Aufgaben, TEDs & Runbooks)
 │   ├── 0Aufgabenstellung.md    # Aufgaben-Checklist
-│   ├── Aufgabe1.md .. Aufgabe10.md
-│   ├── Bonus_Aufgaben.md
+│   ├── Aufgabe1.md .. Aufgabe10.md # Dokumentation der Aufgaben
+│   ├── Bonus_Aufgaben.md       # Dokumentation der Bonus-Aufgaben
+│   ├── LiveDemoRunbook.md      # Leitfaden für die Live-Demo
+│   ├── LiveDemoErklaerung.md   # Verständliche Erklärung der Demo-Szenarien
 │   ├── TED1_Fachartikelanalyse.md .. TED11_Gesamtloesung.md
 │   └── 0ImplementationPlan.md / weitere Dokumente
-├── AG-WF-Artefacts/            # Workflow-Artefakte & Projektkontext
-├── Consul/                     # Consul Konfiguration
-├── SolTradingPlatform.sln      # Solution-Datei
-├── start-all.sh / .bat         # Start-Skripte
-├── Readme.md                   # Diese Datei
-└── .claude/                     # KI-Richtlinien / Tooling (hidden folder)
+├── Consul/                     # Consul Konfiguration & Konfigurations-Templates
+├── SolTradingPlatform.sln      # Visual Studio Solution-Datei
+├── start-all.sh / .bat         # Start-Skripte (macOS/Linux & Windows)
+├── Readme.md                   # Diese Übersichtsdatei
+└── .claude/                    # KI-Richtlinien / Tooling (hidden folder)
 ```
 
 ---
