@@ -2,6 +2,12 @@
 
 > Microservice-basierte Handelsplattform | FH Campus 02 — Integrationstechnologien fuer eGovernment
 
+> [!IMPORTANT] 
+> Eine Übersicht der Aufgabenstellungen und welche genau ausgearbeitet wurden finden Sie hier:
+> [Übersicht](/documentation/0Aufgabenstellung.md)
+> Für jede Aufgabe wurde ein eigenes Markdown File angelegt in der oben die Aufgabenstellung ist und unten wie diese Ausgearbeitet wurde.
+
+
 ## Team
 - Hans Erik Krenn
 - Patrick Grüner
